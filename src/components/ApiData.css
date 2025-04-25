@@ -1,0 +1,40 @@
+
+.api-data {
+    padding: 20px;
+  }
+  
+  .buttons {
+    margin-bottom: 20px;
+  }
+  
+  .buttons button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .buttons button:hover {
+    background-color: #0056b3;
+  }
+  
+  .api-data ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .api-data li {
+    background: #f4f4f4;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .api-data h2 {
+    margin: 0 0 10px;
+  }
+  
