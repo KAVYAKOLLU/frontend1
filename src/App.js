@@ -14,7 +14,7 @@ function App() {
         <section id="home">
           <Home />
         </section>
-        <section id="posts">
+        <section id="todo">
           <ApiData />
         </section>
        

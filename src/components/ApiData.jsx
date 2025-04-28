@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ApiData.css';
@@ -11,7 +10,7 @@ function ApiData() {
 
   useEffect(() => {
     // Fetch data from the backend server
-    axios.get('http://localhost:5000/api/posts')
+    axios.get('https://backend3k.vercel.app/todos')
       .then(response => {
         setData(response.data);
         setFilteredData(response.data);
@@ -23,16 +22,19 @@ function ApiData() {
       });
   }, []);
 
-  const filterMostLiked = () => {
-    const filtered = [...data].sort((a, b) => b.reactions.likes - a.reactions.likes);
+  // Filter completed tasks
+  const filterCompleted = () => {
+    const filtered = data.filter(post => post.completed);
     setFilteredData(filtered);
   };
 
-  const filterMostViewed = () => {
-    const filtered = [...data].sort((a, b) => b.views - a.views);
+  // Filter incomplete tasks
+  const filterIncomplete = () => {
+    const filtered = data.filter(post => !post.completed);
     setFilteredData(filtered);
   };
 
+  // Sort by title
   const sortByTitle = () => {
     const sorted = [...filteredData].sort((a, b) => a.title.localeCompare(b.title));
     setFilteredData(sorted);
@@ -50,17 +52,15 @@ function ApiData() {
     <div className="api-data">
       <h1>Posts</h1>
       <div className="buttons">
-        <button onClick={filterMostLiked}>Most Liked</button>
-        <button onClick={filterMostViewed}>Most Viewed</button>
+        <button onClick={filterCompleted}>Completed</button>
+        <button onClick={filterIncomplete}>Incomplete</button>
         <button onClick={sortByTitle}>Sort by Title</button>
       </div>
       <ul>
         {filteredData.map(post => (
           <li key={post.id}>
             <h2>{post.title}</h2>
-            <p>{post.body}</p>
-            <p>Likes: {post.reactions.likes} </p>
-            <p>Views: {post.views}</p>
+            <p>Status: {post.completed ? 'Completed' : 'Incomplete'}</p>
           </li>
         ))}
       </ul>
